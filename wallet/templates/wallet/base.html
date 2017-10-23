@@ -1,0 +1,40 @@
+{% load static %}
+<!doctype html>
+<html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{% block title %}GOSTCoin Web Wallet{% endblock %}</title>
+        <meta name="description" content="{% block description %}{% endblock %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" href="{% static 'wallet/favicon.ico' %}" type="image/x-icon">
+        <!-- <link rel="stylesheet" href="{% static 'wallet/css/normalize.css' %}"> -->
+        <link rel="stylesheet" href="{% static 'wallet/css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'wallet/css/main.css' %}">
+
+    </head>
+    <body>
+        {% include 'wallet/navigation.html' %}
+
+        <div class="container text-center">
+            {% if messages %}
+                {% for message in messages %}
+                <p{% if message.tags %} class="flash-message bg-{{ message.tags }} {{message.extra_tags}}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="container" id="content">
+            {% block content %}
+            <p>Hello world! This is HTML5 Boilerplate.</p>
+            {% endblock %}
+        </div>
+
+        <div class="footer small text-center">
+            <p>&copy; Purple Tech, 2017. &nbsp;&nbsp; 
+            GST donations: GM5cSsCW14eB822rEHqTGFpm2XKB9nYndd</p>
+        </div>
+
+    </body>
+</html>

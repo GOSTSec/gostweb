@@ -1,0 +1,58 @@
+from gst_web_wallet.settings import *
+from decimal import Decimal
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'change this key'
+DEBUG = True
+ALLOWED_HOSTS = []
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'data', 'db.sqlite3'),
+    }
+}
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+
+# gostcoind settngs
+COIN_USER = "gostcoinrpc"
+COIN_PASSWORD = "change this key"
+COIN_ADDRESS = ("127.0.0.1", 9386)
+COIN_CONNECTION = "http://{}:{}@{}:{}".format(
+    COIN_USER, COIN_PASSWORD, COIN_ADDRESS[0], COIN_ADDRESS[1])
+
+# webapp config
+GST_NETWORK_FEE = Decimal("0.002")
+SERVICE_FEE = Decimal("0.0")
+GST_DUST = Decimal("0.0001")
+# address to receive change
+GST_CHANGE_ADDRESS = "change this to your GST address"
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': True,
+#     'handlers': {
+#         'file': {
+#             'level': 'INFO',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'data', 'app.log'),
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file'],
+#             'level': 'INFO',
+#             'propagate': True,
+#         },
+#     },
+# }
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'gostwallet.i2p']
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'gstwallet',
+#         'USER': 'gstwallet',
+#         'PASSWORD': 'gstwallet',
+#         'HOST': '127.0.0.1',
+#         'PORT': '',
+#     }
+# }

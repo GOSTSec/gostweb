@@ -1,0 +1,16 @@
+*.pyc
+*.pyo
+*.db
+*.pot
+*.doctree
+*.swp
+.doctrees
+.DS_Store
+.coverage
+.idea/
+local_settings.py
+data/db.sqlite3
+data/*.log
+celerybeat-schedule
+celerybeat.pid
+static/*

@@ -1,0 +1,19 @@
+p.flash-message {
+    padding: 15px;
+}
+
+.toggle-block {
+    display: none;
+}
+
+#auth-password-signup:checked + div {
+    display: block;
+}
+
+#auth-retrieve-options:checked + div {
+    display: block;
+}
+
+#content {
+    margin-bottom: 50px;
+}

@@ -1,0 +1,25 @@
+{% extends "wallet/base.html" %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            {% block signup_form %}{% endblock %}
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+            <div class="text-center">
+                <a href="{% url 'integral_auth:signin' %}">
+                    Sign in</a> &#8226; 
+                <a href="{% url 'integral_auth:signup' %}">
+                    Sign up</a>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

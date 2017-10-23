@@ -1,0 +1,85 @@
+{% extends "wallet/base.html" %}
+{% load wallet_tags %}
+
+{% block content %}
+    <div  class="row">
+        <div class="col-md-6">
+            <h3>Your address for receiving coins</h3>
+            <p class="lead"><span class="text-success">{{address}}</span></p>
+            
+            <p>
+                Local account: <span class="text-warning">{{user.account.name}}</span>
+            </p>
+            <h3>Balance: {{balance|floatformat:4}} GST</h3>
+        </div>
+        <div class="col-md-6">
+            <h3>Transfer coins</h3>
+            {% load crispy_forms_tags %}
+            {% crispy form form.helper %}
+            <p class="small">
+                {% if fees.network %}{{ fees.network }} GST network fee{% endif %}
+                {% if fees.service %}, +{{ fees.service }} GST service fee{% endif %}
+            </p>
+            {% if fees.network or fees.service %}
+                <p class="small">Local transfers don't require fees.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <h3>Deposit Transactions</h3>
+    <p>
+        <table class="table">
+            <tr>
+                <th>Transaction id</th>
+                <th>Amount</th>
+                <th>status</th>
+            </tr>
+        {% for t in deposit_transactions reversed %}
+            <tr>
+                <td>{{t.txid }}</td>
+                <td>{% if t.amount %}+{{t.amount|floatformat:4 }} GST{% endif %}</td>
+                
+                <td>
+                {% if t.confirmed %}
+                <span class="text-success">confirmed</span>
+                {% else %}
+                <span class="text-danger">unconfirmed</span>
+                {%endif%}
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td>no transactions yet</td><td></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </p>
+    <h3>Withdrawal Transactions</h3>
+    <p>
+        <table class="table">
+            <tr>
+                <th>Transaction id</th>
+                <th>Amount</th>
+                <th>status</th>
+            </tr>
+        {% for t in withdrawal_transactions reversed %}
+            <tr>
+                <td>{{t.txid }}</td>
+                <td>-{{t.amount|floatformat:4 }} GST</td>
+                
+                <td>
+                {% if t.confirmed %}
+                <span class="text-success">confirmed</span>
+                {% else %}
+                <span class="text-danger">unconfirmed</span>
+                {%endif%}
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td>no transactions yet</td><td></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </p>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "integral_auth/base.html" %}
+
+{% block signup_form %}
+
+    <h1 class="text-center">
+        Sign in
+    </h1>
+
+    <div>
+        {% load crispy_forms_tags %}
+        {% crispy form form.helper %}
+    </div>
+
+{% endblock %}
