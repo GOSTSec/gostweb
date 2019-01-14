@@ -1,5 +1,5 @@
 celery
-Django==1.11.16
+Django==1.11.18
 django-crispy-forms
 django-simple-captcha
 Markdown
